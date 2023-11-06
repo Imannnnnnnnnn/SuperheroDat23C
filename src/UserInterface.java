@@ -21,11 +21,12 @@ public class UserInterface {
 
             System.out.print("Velkommen til superheltenes verden ");
             System.out.println("\nMENU: ");
-            System.out.println("1. Tilføj superhelt");
-            System.out.println("2.Vis liste over alle superhelte  ");
-            System.out.println("3. Søg en superhelt");
-            System.out.println("4. Rediger en superhelt");
-            System.out.println("5. Afslut programmet");
+            System.out.println("1. Opret superhelt");
+            System.out.println("2.Vis alle superhelte");
+            System.out.println("3. Vis superhelt");
+            System.out.println("4. Rediger superhelt");
+            System.out.println("5. Slet superhelt");
+            System.out.println("6. Afslut program");
 
             System.out.println("Vælg en valgmulighed: ");
 
@@ -42,21 +43,27 @@ public class UserInterface {
                     case 2:
 
                         visListeOverAlleSuperhelte();
-                        fortsæt = false;
+
                         break;
 
                     case 3:
                         søgEnSuperhelt();
-                        fortsæt = false;
+
                         break;
                     case 4:
                         redigerSuperhelt();
-                        fortsæt = false;
+
                         break;
                     case 5:
+                        sletSuperhelt();
+                        System.out.println("Slet superhelt");
+                        break;
+                    case 6:
                         System.out.println("Afslut programmet");
                         fortsæt = false;
                         scanner.close();
+                        //TO DO
+                        controller.saveSuperhelt();
                         break;
 
                     default:
@@ -115,8 +122,8 @@ public class UserInterface {
     }
 
     public void visListeOverAlleSuperhelte() {
-        ArrayList<Superhelt> alleSuperhelte = controller.AlleSuperhelte();
-        for (Superhelt superhelt : alleSuperhelte) {
+        ArrayList<Superhelt> seAlleSuperhelte = controller.seAlleSuperhelte();
+        for (Superhelt superhelt : seAlleSuperhelte) {
             System.out.println(superhelt);
         }
     }
@@ -168,4 +175,22 @@ public class UserInterface {
         database.editSuperhero(nytSuperhelteNavn, nytRigtigeNavn, nySuperkraft, nyErMenneske, nytOprettelsesår, nyStyrke);
     }
 
+    public void sletSuperhelt() {
+        System.out.println("Indtast navnet på den superhelt, du vil slette: ");
+        String superhelteNavn = scanner.nextLine();
+        boolean slettet = controller.sletSuperhelt(superhelteNavn);
+
+
+        if (slettet) {
+            System.out.println(superhelteNavn + " blev slettet.");
+        } else {
+            System.out.println(superhelteNavn + " blev ikke fundet.");
+        }
+    }
+
+
 }
+
+
+
+

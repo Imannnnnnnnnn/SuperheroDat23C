@@ -1,3 +1,7 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Superhelt {
     private String superhelteNavn;
     private String rigtigeNavn;
@@ -74,4 +78,9 @@ public class Superhelt {
         this.styrke = nyStyrke;
     }
 
+    public void remove(Superhelt superhelt) {
+    }
 }
+
+
+

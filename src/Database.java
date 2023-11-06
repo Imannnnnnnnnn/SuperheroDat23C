@@ -1,16 +1,18 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Database {
     private ArrayList<Superhelt> superhelte;
+    private FileHandler fileHandler;
 
 
     public Database() {
         this.superhelte = new ArrayList<>();
-
+this.fileHandler = new FileHandler();
         superhelte.add(new Superhelt("Clark Kent", "Superman", "Solar flare", false, 1938, "stærk"));
         superhelte.add(new Superhelt("Tony Stark", "Iron Man", "Superhuman strength", true, 1963, "stærk"));
         superhelte.add(new Superhelt("T'Challa", "Black Panther", "Superhuman acute senses", true, 1966, "stærk"));
-        superhelte.add(new Superhelt("Peter Parker ", "Spider-Man,", "Spider sense", true, 1962, "stærk"));
+        superhelte.add(new Superhelt("Peter Parker ", "Spider-Man", "Spider sense", true, 1962, "stærk"));
         superhelte.add(new Superhelt("Steve Rogers", "Captain America", "Body strength", true, 1964, "stærk"));
     }
 
@@ -23,8 +25,16 @@ public class Database {
         superhelte.add(superhelt);
 
     }
+    public void saveSuperhelt() {
+        try {
+            fileHandler.saveSuperhelt(superhelte);
+        } catch (FileNotFoundException e) {
+            //TO DO
+            throw new RuntimeException(e);
+        }
+    }
 
-    public ArrayList<Superhelt> getAllSuperhelte() {
+    public ArrayList<Superhelt> getseAllSuperhelte() {
         return superhelte;
     }
 
@@ -60,5 +70,20 @@ public class Database {
         System.out.println("Ingen superhelt med det navn blev fundet.");
     }
 
+    public boolean sletSuperhelt(String superhelteNavn) {
+        Superhelt found = null;
+        for (int i = 0; i < superhelte.size(); i++) {
+            found = superhelte.get(i);
+
+            if (found.getSuperhelteNavn().equalsIgnoreCase(superhelteNavn)) {
+
+                superhelte.remove(i);
+                return true;
+            }
+
+        }
+        return false;
+
+    }
 }
 

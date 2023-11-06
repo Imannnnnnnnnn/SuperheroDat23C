@@ -7,12 +7,20 @@ public class Controller {
         this.database = database;
     }
 
-    public ArrayList<Superhelt> AlleSuperhelte() {
-        return database.getAllSuperhelte();
+    public void saveSuperhelt() {
+        this.database.saveSuperhelt();
+    }
+
+    public ArrayList<Superhelt> seAlleSuperhelte() {
+        return database.getseAllSuperhelte();
     }
 
     public boolean JaEllerNej(String input) {
         return input.equalsIgnoreCase("ja") || input.equalsIgnoreCase("nej");
     }
 
+    public boolean sletSuperhelt(String superhelteNavn) {
+        return database.sletSuperhelt(superhelteNavn);
+
+    }
 }
