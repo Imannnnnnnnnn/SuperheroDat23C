@@ -23,4 +23,31 @@ public class Controller {
         return database.sletSuperhelt(superhelteNavn);
 
     }
+
+    public void superhelteNavnComparator(){
+        database.superhelteNavnComparator();
+    }
+
+    public void rigtigeNavn(){
+        database.rigtigeNavn();
+    }
+
+    public void superkraft(){
+        database.superkraft();
+    }
+
+    public void styrke(){
+        database.styrke();
+    }
+
+    public void oprettelseår(){
+        database.oprettelseår();
+    }
+
+    public boolean erMenneske(){
+        return database.erMenneske();
+    }
+    public boolean trackChanges(Superhelt oldData, Superhelt newData){
+        return database.trackChanges(oldData,newData);
+    }
 }

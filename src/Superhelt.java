@@ -80,7 +80,14 @@ public class Superhelt {
 
     public void remove(Superhelt superhelt) {
     }
+
+
+    public String getRigtigeNavn() {
+        return null;
+    }
 }
+
+
 
 
 

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
+    private ArrayList<Superhelt> superhelte;
 
     private Scanner scanner;
     private Database database;
@@ -21,12 +23,13 @@ public class UserInterface {
 
             System.out.print("Velkommen til superheltenes verden ");
             System.out.println("\nMENU: ");
-            System.out.println("1. Opret superhelt");
+            System.out.println("1.Opret superhelt");
             System.out.println("2.Vis alle superhelte");
-            System.out.println("3. Vis superhelt");
+            System.out.println("3.Vis en superhelt!!");
             System.out.println("4. Rediger superhelt");
             System.out.println("5. Slet superhelt");
-            System.out.println("6. Afslut program");
+            System.out.println("6. sorteret liste af superheltene");
+            System.out.println("7. afslut programmet");
 
             System.out.println("Vælg en valgmulighed: ");
 
@@ -59,6 +62,15 @@ public class UserInterface {
                         System.out.println("Slet superhelt");
                         break;
                     case 6:
+                        System.out.println("Menu af sorteret valgmuligheder, vælg en af disse: ");
+                        System.out.println("1. Sorteret efter superhelte navn");
+                        System.out.println("2. Sorteret efter rigtige navn");
+                        System.out.println("3. Sorteret efter superkrafter");
+                        System.out.println("4. Sorteret efter styrker");
+                        System.out.println("5. Sorteret efter oprettelsesår");
+                        System.out.println("6. Sorteret om hvorvidt superhelten er menneske eller ej");
+                        sorted();
+                    case 7:
                         System.out.println("Afslut programmet");
                         fortsæt = false;
                         scanner.close();
@@ -77,6 +89,36 @@ public class UserInterface {
                 System.out.println(e.getMessage());
                 scanner.nextLine();
             }
+
+        }
+
+    }
+
+    public void sorted(){
+        int SortedMenu = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (SortedMenu){
+            case 1:
+                controller.superhelteNavnComparator();
+                break;
+            case 2:
+                controller.rigtigeNavn();
+                break;
+            case 3:
+                controller.superkraft();
+                break;
+            case 4:
+                controller.styrke();
+                break;
+            case 5:
+                controller.oprettelseår();
+                break;
+            case 6:
+                controller.erMenneske();
+
+            default:
+                System.out.println("Ugyldigt input, prøv igen.");
 
         }
     }
@@ -121,7 +163,10 @@ public class UserInterface {
         }
     }
 
+
     public void visListeOverAlleSuperhelte() {
+        SuperhelteavnOgStyrkeComparator comparison = new SuperhelteavnOgStyrkeComparator();
+        Collections.sort(superhelte, comparison);
         ArrayList<Superhelt> seAlleSuperhelte = controller.seAlleSuperhelte();
         for (Superhelt superhelt : seAlleSuperhelte) {
             System.out.println(superhelt);
@@ -188,9 +233,19 @@ public class UserInterface {
         }
     }
 
+    public boolean trackChanges() {
 
+        boolean changesDetected = true;
+
+        if (changesDetected) {
+            System.out.println("Data blev gemt.");
+        } else {
+            System.out.println("Ingen ændringer i data, intet blev gemt.");
+        }
+
+        return changesDetected;
+    }
 }
-
 
 
 

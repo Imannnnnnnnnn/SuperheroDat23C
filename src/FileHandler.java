@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -9,6 +7,11 @@ import java.util.Scanner;
 public class FileHandler {
     private final File CSVFile = new File("superheroDatabase.csv");
     private final ArrayList<Superhelt> LOADED_FILE = new ArrayList<>();
+
+
+    public FileHandler() {
+
+    }
 
     public void saveSuperhelt(ArrayList<Superhelt> listOfHeroesToSave) throws FileNotFoundException {
         PrintStream saveToFile = new PrintStream(CSVFile);
@@ -44,6 +47,4 @@ public class FileHandler {
     }
 
 }
-
-
 
